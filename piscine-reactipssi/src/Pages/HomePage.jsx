@@ -1,4 +1,7 @@
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import LargeButton from './../Components/Buttons/LargeButton'
+
 function HomePage() {
     return (
         <div style={{
@@ -6,9 +9,8 @@ function HomePage() {
             height: '100%',
             display: 'row',
         }}>
+            Statistique
             <div style={{
-                borderWidth: " 10em",
-                borderTop: "10em",
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
                 gridGap: 20,
@@ -18,15 +20,17 @@ function HomePage() {
             }}>
                 <div> <p style={{}}> 100 </p> Carnet(s) </div>
                 <div> 100 Note(s) </div>
-                <div> 100 catégories</div>
+                <div> 100 cat</div>
             </div>
 
 
             <div style={{
                 width: '100%',
                 height: '46em',
-                backgroundColor: 'blue', backgroundColor: 'red',
-            }}>ok ok ok ok ok  </div>
+                backgroundColor: 'red',
+            }}>
+                <LargeButton />
+            </div>
         </div>
     );
 }

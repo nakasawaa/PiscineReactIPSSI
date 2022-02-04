@@ -23,9 +23,9 @@ ReactDOM.render(
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/carnet" element={<CarnetPage />} />
                 <Route path="/carnet/add" element={<CarnetAddPage />} />
-                <Route path="/notes/preview" element={<NotesPreviewPage />} />
-                <Route path="/notes/add" element={<NotesAddPage />} />
-                <Route path="/notes/:id" element={<NotesUpdatePage />} />
+                <Route path="/carnet/notes/preview" element={<NotesPreviewPage />} />
+                <Route path="/carnet/notes/add" element={<NotesAddPage />} />
+                <Route path="/carnet/notes/:id" element={<NotesUpdatePage />} />
                 <Route path="/config" element={<ConfigPage />} />
             </Routes>
         </BrowserRouter>
