@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import AppNavbar from './Components/AppNavbar/AppNavbar'
 import HomePage from './Pages/HomePage'
 import CarnetPage from './Pages/CarnetPage'
@@ -22,8 +21,7 @@ ReactDOM.render(
             <AppNavbar></AppNavbar>
           </header>
             <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/home" element={<HomePage />} />
+                <Route path="/" element={<HomePage />} />
                 <Route path="/carnet" element={<CarnetPage />} />
                 <Route path="/carnet/add" element={<CarnetAddPage />} />
                 <Route path="/carnet/notes/preview" element={<NotesPreviewPage />} />
