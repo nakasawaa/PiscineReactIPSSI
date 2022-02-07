@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
+import AppNavbar from './Components/AppNavbar/AppNavbar'
 import HomePage from './Pages/HomePage'
 import CarnetPage from './Pages/CarnetPage'
 import CarnetAddPage from './Pages/CarnetAddPage'
@@ -18,6 +18,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
+          <header className="mb-5">
+            <AppNavbar></AppNavbar>
+          </header>
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/home" element={<HomePage />} />
