@@ -2,7 +2,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { NotesProvider } from './../Providers/NotesProvider'
-
+import { CategoriesProvider } from '../Providers/CategoriesProvider'
 
 export default function NotesAddPage() {
   const [formnoteAdd, setFormnoteAdd] = useState({
@@ -14,6 +14,8 @@ export default function NotesAddPage() {
 
   const notesaddProvider = new NotesProvider()
   const navigate = useNavigate()
+
+  const categoriesProvider = new CategoriesProvider()
 
   const { carnetid } = useParams()
   useEffect(() => {
@@ -57,11 +59,21 @@ export default function NotesAddPage() {
               <Row>
                 <Form.Group className="mb-3">
                   <Form.Label>Catégorie</Form.Label>
-                  <Form.Select aria-label="Default select example">
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={() => {
+
+
+
+                    }}>
+
                     <option>Sélectionnez une catégorie</option>
-                    <option value="1">Tas peur</option>
-                    <option value="2">Tas tres peur</option>
-                    <option value="3">Tas la phobie</option>
+                    {categoriesProvider.getCategories().map((categorie, i) => {
+
+                      return (
+                        <option value={categorie.id}>{categorie.nom}</option>
+                      )
+                    })}
                   </Form.Select>
                 </Form.Group>
               </Row>

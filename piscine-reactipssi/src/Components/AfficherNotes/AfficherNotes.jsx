@@ -61,7 +61,6 @@ export function AfficherNotes() {
                         Supprimer
                     </Button>
                 </td>
-                <tbody></tbody>
             </tr >
         )
     })
