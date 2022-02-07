@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button, Table } from 'react-bootstrap'
+import { Container, Row, Col, Button, Table, InputGroup, FormControl } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { CarnetsProvider } from '../Providers/CarnetsProvider'
@@ -7,7 +7,13 @@ import { AfficherNotes } from '../Components/AfficherNotes/AfficherNotes'
 export default function CarnetPage({ isNotesDisplayed }) {
     const [carnets, setCarnets] = useState([])
     const carnetProvider = new CarnetsProvider()
+    const [formAdd, setFormAdd] = useState({
+        id: '',
+        nom: '',
+    })
 
+    const carnetsProvider = new CarnetsProvider()
+    
     useEffect(() => {
         let datas = carnetProvider.getCarnets()
         setCarnets(datas)
@@ -42,6 +48,13 @@ export default function CarnetPage({ isNotesDisplayed }) {
             </tr>
         )
     })
+
+    function add(e) {
+        e.preventDefault()
+        carnetsProvider.add(formAdd)
+        window.location.reload()
+    }
+
     return (
         <>
             <Container>
@@ -55,9 +68,29 @@ export default function CarnetPage({ isNotesDisplayed }) {
                 <Row>
                     <Col md={12}>
                         <div className="mb-3">
-                            <Button as={Link} to="/carnet/add">
-                                Ajouter un carnet
-                            </Button>
+                            <form
+                                onSubmit={e => {
+                                  e.preventDefault()
+                                  add()
+                                }}
+                            >                     
+                                <InputGroup className="mb-3">
+                                  <FormControl
+                                    type="text"
+                                    placeholder="Enter nom de carnet"
+                                    value={formAdd.nom}
+                                    onChange={e => {
+                                        let tmp = { ...formAdd }
+                                        tmp.nom = e.target.value
+                                        setFormAdd(tmp)
+                                    }}
+                                    required
+                                  />
+                                  <Button variant="primary" onClick={add}>
+                                    Ajouter
+                                  </Button>
+                                </InputGroup>
+                            </form>
                         </div>
 
                         <Table striped bordered hover>
