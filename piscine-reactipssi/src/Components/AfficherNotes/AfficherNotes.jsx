@@ -2,11 +2,14 @@ import React from 'react';
 import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { NotesProvider } from '../../Providers/NotesProvider'
+import { Link, useParams } from 'react-router-dom'
+import CarnetAddPage from '../../Pages/CarnetAddPage';
 
 export function AfficherNotes() {
     const [notes, setNotes] = useState([])
     const noteProvider = new NotesProvider()
 
+    const { id } = useParams()
 
     useEffect(() => {
         let datasnotes = noteProvider.getNotes()
@@ -40,13 +43,16 @@ export function AfficherNotes() {
             <tr key={'notes-' + note.id}>
                 <td>{i + 1}</td>
                 <td>
+
+                </td>
+                <td>
                     {note.nom}
                 </td>
                 <td>
                     {note.contenu}
                 </td>
                 <td>
-                    <Button variant="warning" onClick={() => update(note)}>
+                    <Button variant="warning" as={Link} to={`/carnet/notes/${note.id}`}>
                         Modifier
                     </Button>
                 </td>
@@ -56,7 +62,7 @@ export function AfficherNotes() {
                     </Button>
                 </td>
                 <tbody></tbody>
-            </tr>
+            </tr >
         )
     })
     return (
@@ -78,6 +84,7 @@ export function AfficherNotes() {
                                 <tr>
                                     <th>#</th>
                                     <th>Carnet</th>
+                                    <th>Titre de la note</th>
                                     <th>Note</th>
                                     <th>Modifier</th>
                                     <th>Supprimer</th>
