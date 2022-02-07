@@ -15,6 +15,9 @@ export default function AppNavbar() {
             <Nav.Link as={Link} to="/carnet">
               Carnets
             </Nav.Link>
+            <Nav.Link as={Link} to="/config">
+              Config
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
