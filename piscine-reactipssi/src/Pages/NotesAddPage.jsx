@@ -77,7 +77,8 @@ export default function NoteAddPage() {
                             <Form.Group className="mb-3">
                                 <Form.Label>Ecrire la note</Form.Label>
                                 <Form.Control
-                                    type="text"
+                                    as="textarea"
+                                    type="textarea"
                                     placeholder="Entrer la note"
                                     value={formnoteAdd.note}
                                     onChange={e => {
@@ -87,8 +88,8 @@ export default function NoteAddPage() {
                                     }}
                                     required
                                 />
-                            </Form.Group>
-                            <Button variant="light" as={Link} to="/carnet">
+                            </Form.Group >
+                            <Button variant="outline-dark" as={Link} to="/carnet">
                                 Retour
                             </Button>
 
