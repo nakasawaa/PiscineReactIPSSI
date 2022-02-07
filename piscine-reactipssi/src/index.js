@@ -15,23 +15,23 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter>
-          <header className="mb-5">
-            <AppNavbar></AppNavbar>
-          </header>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/carnet" element={<CarnetPage />} />
-                <Route path="/carnet/add" element={<CarnetAddPage />} />
-                <Route path="/carnet/notes/preview" element={<NotesPreviewPage />} />
-                <Route path="/carnet/notes/add" element={<NotesAddPage />} />
-                <Route path="/carnet/notes/:id" element={<NotesUpdatePage />} />
-                <Route path="/config" element={<ConfigPage />} />
-            </Routes>
-        </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
+  <React.StrictMode>
+    <BrowserRouter>
+      <header className="mb-5">
+        <AppNavbar></AppNavbar>
+      </header>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/carnet" element={<CarnetPage isNotesDisplayed={true} />} />
+        <Route path="/carnet/add" element={<CarnetAddPage />} />
+        <Route path="/carnet/notes/preview" element={<NotesPreviewPage />} />
+        <Route path="/carnet/notes/add" element={<NotesAddPage />} />
+        <Route path="/carnet/notes/:id" element={<NotesUpdatePage />} />
+        <Route path="/config" element={<ConfigPage />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

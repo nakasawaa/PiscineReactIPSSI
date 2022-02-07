@@ -5,17 +5,12 @@ import { NotesProvider } from './../Providers/NotesProvider'
 
 
 export default function NotesAddPage() {
-  const [formAdd, setFormAdd] = useState({
-    id: '',
-    nom: '',
-  })
   const [formnoteAdd, setFormnoteAdd] = useState({
+    nom: '',
     id: '',
     contenu: '',
   })
 
-  const notesProvider = new NotesProvider()
-  const notescatProvider = new NotesProvider()
   const notesaddProvider = new NotesProvider()
   const navigate = useNavigate()
 
@@ -24,7 +19,6 @@ export default function NotesAddPage() {
 
   function add(e) {
     e.preventDefault()
-    notesProvider.add(formAdd)
     notesaddProvider.add(formnoteAdd)
     navigate('/carnet')
   }
@@ -44,12 +38,12 @@ export default function NotesAddPage() {
                 <Form.Label>Nom de la note</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter nom de la note"
-                  value={formAdd.nom}
+                  placeholder="Entrer nom de la note"
+                  value={formnoteAdd.nom}
                   onChange={e => {
-                    let tmp = { ...formAdd }
+                    let tmp = { ...formnoteAdd }
                     tmp.nom = e.target.value
-                    setFormAdd(tmp)
+                    setFormnoteAdd(tmp)
                   }}
                   required
                 />
@@ -74,7 +68,7 @@ export default function NotesAddPage() {
                   value={formnoteAdd.note}
                   onChange={e => {
                     let tmpnote = { ...formnoteAdd }
-                    tmpnote.note = e.target.value
+                    tmpnote.contenu = e.target.value
                     setFormnoteAdd(tmpnote)
                   }}
                   required

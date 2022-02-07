@@ -1,10 +1,10 @@
 import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { CarnetsProvider } from './../Providers/CarnetsProvider'
-import { NotesProvider } from './../Providers/NotesProvider'
+import { CarnetsProvider } from '../Providers/CarnetsProvider'
+import { AfficherNotes } from '../Components/AfficherNotes/AfficherNotes'
 
-export default function CarnetPage() {
+export default function CarnetPage({ isNotesDisplayed }) {
     const [carnets, setCarnets] = useState([])
     const carnetProvider = new CarnetsProvider()
 
@@ -29,6 +29,11 @@ export default function CarnetPage() {
             <tr key={'carnets-' + carnet.id}>
                 <td>{indice + 1}</td>
                 <td>{carnet.nom}</td>
+                <td>
+                    <Button as={Link} to={'./notes/add'}>
+                        Ajouter une note
+                    </Button>
+                </td>
                 <td>
                     <Button variant="danger" onClick={() => remove(carnet)}>
                         Supprimer
@@ -60,6 +65,7 @@ export default function CarnetPage() {
                                 <tr>
                                     <th>#</th>
                                     <th>Nom</th>
+                                    <th>Ajouter une note</th>
                                     <th>Supprimer</th>
                                 </tr>
                             </thead>
@@ -67,7 +73,11 @@ export default function CarnetPage() {
                         </Table>
                     </Col>
                 </Row>
+
             </Container>
+            {isNotesDisplayed && <AfficherNotes />}
+
         </>
     )
 }
+

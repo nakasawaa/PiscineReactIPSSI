@@ -1,6 +1,7 @@
 import CarnetPage from './../Pages/CarnetPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LargeButton from './../Components/Buttons/LargeButton'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 function HomePage() {
     return (
@@ -10,20 +11,14 @@ function HomePage() {
             display: 'row',
         }}>
             Statistique
-            <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gridGap: 20,
-                width: '100%',
-                border: '1em',
-                bordelColor: 'red',
-                height: '15em',
-                backgroundColor: 'white',
-            }}>
-                <div> <p style={{}}> 100 </p> Carnet(s) </div>
-                <div> 100 Note(s) </div>
-                <div> 100 cat</div>
-            </div>
+            <Container>
+                <Row>
+                    <Col>STAT 1</Col>
+                    <Col>STAT 2</Col>
+                    <Col>STAT 3</Col>
+                    <hr />
+                </Row>
+            </Container>
 
 
             <div style={{
@@ -31,7 +26,7 @@ function HomePage() {
                 height: '46em',
                 backgroundColor: 'white',
             }}>
-                <CarnetPage />
+                <CarnetPage isNotesDisplayed={false} />
             </div>
         </div>
     );
