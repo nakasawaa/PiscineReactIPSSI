@@ -3,11 +3,12 @@ import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { NotesProvider } from '../../Providers/NotesProvider'
 import { Link, useParams } from 'react-router-dom'
+import { CarnetsProvider } from '../../Providers/CarnetsProvider'
 
 export function AfficherNotes() {
     const [notes, setNotes] = useState([])
     const noteProvider = new NotesProvider()
-
+    const carnetProvider = new CarnetsProvider()
     const { id } = useParams()
 
     useEffect(() => {
@@ -42,7 +43,7 @@ export function AfficherNotes() {
             <tr key={'notes-' + note.id}>
                 <td>{i + 1}</td>
                 <td>
-
+                    {carnetProvider.getCarnetById(note.carnetid).nom}
                 </td>
                 <td>
                     {note.nom}

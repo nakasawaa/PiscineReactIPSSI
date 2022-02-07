@@ -13,7 +13,7 @@ export default function CarnetPage({ isNotesDisplayed }) {
     })
 
     const carnetsProvider = new CarnetsProvider()
-    
+
     useEffect(() => {
         let datas = carnetProvider.getCarnets()
         setCarnets(datas)
@@ -36,7 +36,7 @@ export default function CarnetPage({ isNotesDisplayed }) {
                 <td>{indice + 1}</td>
                 <td>{carnet.nom}</td>
                 <td>
-                    <Button as={Link} to={'./notes/add'}>
+                    <Button as={Link} to={`/carnet/notes/add/${carnet.id}`}>
                         Ajouter une note
                     </Button>
                 </td>
@@ -70,25 +70,25 @@ export default function CarnetPage({ isNotesDisplayed }) {
                         <div className="mb-3">
                             <form
                                 onSubmit={e => {
-                                  e.preventDefault()
-                                  add()
+                                    e.preventDefault()
+                                    add()
                                 }}
-                            >                     
+                            >
                                 <InputGroup className="mb-3">
-                                  <FormControl
-                                    type="text"
-                                    placeholder="Enter nom de carnet"
-                                    value={formAdd.nom}
-                                    onChange={e => {
-                                        let tmp = { ...formAdd }
-                                        tmp.nom = e.target.value
-                                        setFormAdd(tmp)
-                                    }}
-                                    required
-                                  />
-                                  <Button variant="primary" onClick={add}>
-                                    Ajouter
-                                  </Button>
+                                    <FormControl
+                                        type="text"
+                                        placeholder="Enter nom de carnet"
+                                        value={formAdd.nom}
+                                        onChange={e => {
+                                            let tmp = { ...formAdd }
+                                            tmp.nom = e.target.value
+                                            setFormAdd(tmp)
+                                        }}
+                                        required
+                                    />
+                                    <Button variant="primary" onClick={add}>
+                                        Ajouter
+                                    </Button>
                                 </InputGroup>
                             </form>
                         </div>

@@ -5,28 +5,24 @@ import { CategoriesProvider } from '../../Providers/CategoriesProvider'
 import { Link, useParams } from 'react-router-dom'
 
 export function AfficherCategories() {
-
+    const [formUpdate, setFormcatUpdate] = useState({
+        id: '',
+        nom: '',
+    })
     const [categories, setCategories] = useState([])
     const categorieProvider = new CategoriesProvider()
+
+    const { id } = useParams()
 
     useEffect(() => {
         let datascategories = categorieProvider.getCategories()
         setCategories(datascategories)
     }, [])
 
-    function remove(categorie) {
-        let rep = window.confirm(
-            `Etes-vous sur de vouloir supprimer la categorie ${categorie.nom}`
-        )
-        if (rep) {
-            categorieProvider.remove(categorie)
-            let datascategorie = categorieProvider.getCategories()
-            setCategories(datascategorie)
-        }
-    }
+
     function update(categorie) {
         let rep = window.confirm(
-            `Etes-vous sur de vouloir modifier la categorie ${categorie.nom}`
+            `Etes-vous sur de vouloir modifier la categorie ${categorie.contenu}`
         )
         if (rep) {
             categorieProvider.update(categorie)
@@ -43,13 +39,32 @@ export function AfficherCategories() {
                     {categorie.nom}
                 </td>
                 <td>
-                    <CategorieForm categorie={categorie} onUpdate={update} />
+                    <Form onSubmit={e => update(e)}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Catégorie</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Entrer un nouveau nom"
+                                value={formUpdate.nom}
+                                onChange={e => {
+                                    let tmp = { ...formUpdate }
+                                    tmp.nom = e.target.value
+                                    setFormcatUpdate(tmp)
+                                }}
+                                required
+                            />
+                        </Form.Group>
+                        <Button variant="success" type="submit" className="float-end">
+                            Enregistrer
+                        </Button>
+                    </Form>
                 </td>
                 <td>
                     <Button variant="danger" onClick={() => remove(categorie)}>
                         Supprimer
                     </Button>
                 </td>
+                <tbody></tbody>
             </tr >
         )
     })
@@ -85,36 +100,9 @@ export function AfficherCategories() {
 
     )
 }
-function CategorieForm({ categorie, onUpdate }) {
+function CategorieForm() {
     const [formUpdate, setFormcatUpdate] = useState({
-        ...categorie
+        id: '',
+        nom: '',
     })
-
-    const update = (e) => {
-        e.preventDefault()
-        onUpdate(formUpdate)
-        console.log(formUpdate)
-    }
-
-    return (
-        <Form onSubmit={(e) => update(e)}>
-            <Form.Group className="mb-3">
-                <Form.Label>Catégorie</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Entrer un nouveau nom"
-                    value={formUpdate.nom}
-                    onChange={e => {
-                        let tmp = { ...formUpdate }
-                        tmp.nom = e.target.value
-                        setFormcatUpdate(tmp)
-                    }}
-                    required
-                />
-            </Form.Group>
-            <Button variant="success" type="submit" className="float-end">
-                Enregistrer
-            </Button>
-        </Form>
-    )
 }

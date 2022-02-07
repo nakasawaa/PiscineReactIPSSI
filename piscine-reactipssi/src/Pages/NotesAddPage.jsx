@@ -1,6 +1,6 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { NotesProvider } from './../Providers/NotesProvider'
 
 
@@ -9,13 +9,19 @@ export default function NotesAddPage() {
     nom: '',
     id: '',
     contenu: '',
+    carnetid: '',
   })
 
   const notesaddProvider = new NotesProvider()
   const navigate = useNavigate()
 
+  const { carnetid } = useParams()
+  useEffect(() => {
 
-
+    setFormnoteAdd({
+      ...formnoteAdd, carnetid: carnetid
+    })
+  }, [])
 
   function add(e) {
     e.preventDefault()

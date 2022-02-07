@@ -21,7 +21,7 @@ export default function ConfigPage() {
     function add(e) {
         e.preventDefault()
         categorieProvider.add(formAdd)
-        window.location.reload()
+
     }
     return (
         <>
@@ -75,6 +75,7 @@ export default function ConfigPage() {
                     </Col>
                 </Row>
             </Container>
+            <hr />
             <Container>
                 <AfficherCategories />
             </Container>
