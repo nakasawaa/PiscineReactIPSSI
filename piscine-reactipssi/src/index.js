@@ -4,8 +4,6 @@ import './index.css';
 import AppNavbar from './Components/AppNavbar/AppNavbar'
 import HomePage from './Pages/HomePage'
 import CarnetPage from './Pages/CarnetPage'
-import CarnetAddPage from './Pages/CarnetAddPage'
-import NotesPreviewPage from './Pages/NotesPreviewPage'
 import NotesAddPage from './Pages/NotesAddPage'
 import NotesUpdatePage from './Pages/NotesUpdatePage'
 import ConfigPage from './Pages/ConfigPage'
@@ -23,8 +21,6 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/carnet" element={<CarnetPage isNotesDisplayed={true} />} />
-        <Route path="/carnet/add" element={<CarnetAddPage />} />
-        <Route path="/carnet/notes/preview" element={<NotesPreviewPage />} />
         <Route path="/carnet/notes/add/:carnetid" element={<NotesAddPage />} />
         <Route path="/carnet/notes/:id" element={<NotesUpdatePage />} />
         <Route path="/config" element={<ConfigPage />} />

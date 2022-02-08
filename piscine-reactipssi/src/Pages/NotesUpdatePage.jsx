@@ -3,8 +3,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { NotesProvider } from './../Providers/NotesProvider'
 import { CategoriesProvider } from './../Providers/CategoriesProvider'
+import { Converter } from 'showdown'
+
 
 export default function NoteUpdatePage() {
+    const converter = new Converter()
     const [note, setNote] = useState({})
     const [formUpdate, setFormUpdate] = useState({
         id: '',
@@ -41,12 +44,19 @@ export default function NoteUpdatePage() {
         setFormUpdate(note)
     }
 
+    let text = formUpdate.contenu,
+        htmlMD = converter.makeHtml(text)
+
     return (
         <>
             <Container>
                 <Row>
                     <Col>
                         <h1>Modifier un note</h1>
+                        <hr />
+                    </Col>
+                    <Col>
+                        <h1>Preview</h1>
                         <hr />
                     </Col>
                 </Row>
@@ -121,6 +131,9 @@ export default function NoteUpdatePage() {
                                 Enregistrer
                             </Button>
                         </Form>
+                    </Col>
+                    <Col>
+                        <div dangerouslySetInnerHTML={{ __html: htmlMD }}></div>
                     </Col>
                 </Row>
             </Container>
