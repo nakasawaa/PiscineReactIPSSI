@@ -3,8 +3,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { NotesProvider } from './../Providers/NotesProvider'
 import { CategoriesProvider } from '../Providers/CategoriesProvider'
+import { Converter } from 'showdown'
 
 export default function NotesAddPage() {
+  const converter = new Converter()
   const [formnoteAdd, setFormnoteAdd] = useState({
     nom: '',
     id: '',
@@ -31,13 +33,23 @@ export default function NotesAddPage() {
     navigate('/carnet')
   }
 
+  let text = formnoteAdd.contenu,
+  htmlMD = converter.makeHtml(text)
+
   return (
     <>
       <Container>
-        <Col>
-          <h1>Ajouter une note</h1>
-          <hr />
-        </Col>
+        <Row>
+          <Col>
+            <h1>Ajouter une note</h1>
+            <hr />
+          </Col>
+          <Col>
+            <h1>Preview</h1>
+            <hr />
+          </Col>
+
+        </Row>
 
         <Row>
           <Col md={6}>
@@ -99,6 +111,9 @@ export default function NotesAddPage() {
                 Enregistrer
               </Button>
             </Form>
+          </Col>
+          <Col>
+          <div dangerouslySetInnerHTML={{ __html: htmlMD }}></div>
           </Col>
         </Row>
       </Container>
