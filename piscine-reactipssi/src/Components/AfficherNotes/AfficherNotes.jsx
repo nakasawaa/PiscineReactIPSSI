@@ -2,14 +2,16 @@ import React from 'react';
 import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { NotesProvider } from '../../Providers/NotesProvider'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { CarnetsProvider } from '../../Providers/CarnetsProvider'
+import { CategoriesProvider } from '../../Providers/CategoriesProvider'
 
 export function AfficherNotes() {
     const [notes, setNotes] = useState([])
+    const [categories, setCategories] = useState([])
     const noteProvider = new NotesProvider()
     const carnetProvider = new CarnetsProvider()
-    const { id } = useParams()
+    const categorieProvider = new CategoriesProvider()
 
     useEffect(() => {
         let datasnotes = noteProvider.getNotes()
@@ -27,16 +29,6 @@ export function AfficherNotes() {
         }
     }
 
-    function update(note) {
-        let rep = window.confirm(
-            `Etes-vous sur de vouloir modifier la note ${note.contenu}`
-        )
-        if (rep) {
-            noteProvider.update(note)
-            let datasnotes = noteProvider.getNotes()
-            setNotes(datasnotes)
-        }
-    }
 
     let displayNotes = notes.map((note, i) => {
         return (
@@ -44,6 +36,9 @@ export function AfficherNotes() {
                 <td>{i + 1}</td>
                 <td>
                     {carnetProvider.getCarnetById(note.carnetid).nom}
+                </td>
+                <td>
+                    {categorieProvider.getCategorieById(note.categorieid).nom}
                 </td>
                 <td>
                     {note.nom}
@@ -83,6 +78,7 @@ export function AfficherNotes() {
                                 <tr>
                                     <th>#</th>
                                     <th>Carnet</th>
+                                    <th>Catégorie</th>
                                     <th>Titre de la note</th>
                                     <th>Note</th>
                                     <th>Modifier</th>

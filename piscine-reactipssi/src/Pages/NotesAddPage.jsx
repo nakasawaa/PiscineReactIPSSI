@@ -10,13 +10,14 @@ export default function NotesAddPage() {
     id: '',
     contenu: '',
     carnetid: '',
+    categorieid: '',
   })
 
   const notesaddProvider = new NotesProvider()
-  const navigate = useNavigate()
-
   const categoriesProvider = new CategoriesProvider()
 
+  const navigate = useNavigate()
+  const { categorieid } = categoriesProvider.getCategorieById()
   const { carnetid } = useParams()
   useEffect(() => {
 
@@ -61,10 +62,10 @@ export default function NotesAddPage() {
                   <Form.Label>Catégorie</Form.Label>
                   <Form.Select
                     aria-label="Default select example"
-                    onChange={() => {
-
-
-
+                    onChange={a => {
+                      let tmp = { ...formnoteAdd }
+                      tmp.categorieid = a.target.value
+                      setFormnoteAdd(tmp)
                     }}>
 
                     <option>Sélectionnez une catégorie</option>

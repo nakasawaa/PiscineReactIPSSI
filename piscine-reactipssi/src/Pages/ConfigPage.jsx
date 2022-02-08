@@ -33,9 +33,9 @@ export default function ConfigPage() {
                     </Col >
                 </Row>
                 <Row>
-                    <h4>Mode List</h4>
+                    <h4>Mode List Indisponible</h4>
                     <Button as="input" type="button" value="List" />{' '}
-                    <h4>Mode Card</h4>
+                    <h4>Mode Card Indisponible</h4>
                     <Button as="input" type="button" value="Card" />{' '}
                 </Row>
 

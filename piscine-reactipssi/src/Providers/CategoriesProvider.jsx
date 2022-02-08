@@ -26,6 +26,7 @@ export class CategoriesProvider {
         tmp.id = id
         this.categories.push(tmp)
         this.save()
+        window.location.reload()
     }
 
     update(categorie) {

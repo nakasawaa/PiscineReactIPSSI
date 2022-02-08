@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Row, Col, Button, Table, Form } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { CategoriesProvider } from '../../Providers/CategoriesProvider'
-import { Link, useParams } from 'react-router-dom'
 
 export function AfficherCategories() {
 
