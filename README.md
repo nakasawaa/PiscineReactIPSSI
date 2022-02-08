@@ -10,7 +10,7 @@ Récupérer le repo via a la commande suivante dans votre terminal :
 
 Une fois récupéré se positonner dans le repertoire de l'application :
 
-`cd Notes`
+`cd PiscineReactIPSSI`
 
 Installer les dépendances :
 
