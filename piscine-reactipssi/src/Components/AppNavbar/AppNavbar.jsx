@@ -1,5 +1,5 @@
-import { Navbar, Container, Nav } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function AppNavbar() {
   return (
@@ -19,8 +19,13 @@ export default function AppNavbar() {
               Config
             </Nav.Link>
           </Nav>
+
+          <NavDropdown title="Favoris" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2"></NavDropdown.Item>
+          </NavDropdown>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
+  );
 }
